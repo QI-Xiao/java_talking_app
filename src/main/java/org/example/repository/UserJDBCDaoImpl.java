@@ -62,4 +62,14 @@ public class UserJDBCDaoImpl implements IUserDao {
     public void delete(User user) {
 
     }
+
+    @Override
+    public User update(User user) {
+        return null;
+    }
+
+    @Override
+    public User getById(long id) {
+        return null;
+    }
 }

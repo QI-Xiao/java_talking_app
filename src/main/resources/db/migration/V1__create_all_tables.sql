@@ -1,4 +1,4 @@
-CREATE TABLE chatgroups (
+CREATE TABLE rooms (
                             id              BIGSERIAL NOT NULL,
                             name            VARCHAR(30),
                             notes           VARCHAR(150),
@@ -6,7 +6,7 @@ CREATE TABLE chatgroups (
                             last_active     date default CURRENT_DATE
 );
 
-ALTER TABLE chatgroups ADD CONSTRAINT chatgroup_pk PRIMARY KEY (id);
+ALTER TABLE rooms ADD CONSTRAINT rooms_pk PRIMARY KEY (id);
 
 CREATE TABLE users (
                        id              BIGSERIAL NOT NULL,
@@ -22,22 +22,23 @@ CREATE TABLE users (
 
 ALTER TABLE users ADD CONSTRAINT user_pk PRIMARY KEY ( id );
 
-CREATE TABLE relations (
+CREATE TABLE users_rooms (
                            id             BIGSERIAL NOT NULL,
-                           group_id       INTEGER NOT NULL,
-                           user_id        INTEGER NOT NULL,
+                           room_id       BIGINT NOT NULL,
+                           user_id        BIGINT NOT NULL,
                            nickname       VARCHAR(30) not null,
+                           role           VARCHAR(30),
                            join_date      date default CURRENT_DATE,
                            last_active    date default CURRENT_DATE
 );
 
-ALTER TABLE relations ADD CONSTRAINT relation_pk PRIMARY KEY ( id );
+ALTER TABLE users_rooms ADD CONSTRAINT users_rooms_pk PRIMARY KEY ( id );
 
-ALTER TABLE relations
-    ADD CONSTRAINT relation_group_fk FOREIGN KEY ( group_id )
-        REFERENCES chatgroups ( id );
+ALTER TABLE users_rooms
+    ADD CONSTRAINT room_fk FOREIGN KEY ( room_id )
+        REFERENCES rooms ( id );
 
 
-ALTER TABLE relations
-    ADD CONSTRAINT relation_user_fk FOREIGN KEY ( user_id )
+ALTER TABLE users_rooms
+    ADD CONSTRAINT user_fk FOREIGN KEY ( user_id )
         REFERENCES users ( id );
