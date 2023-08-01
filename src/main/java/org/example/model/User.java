@@ -1,6 +1,7 @@
 package org.example.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,7 +16,9 @@ public class User {
     @Column
     private long id;
     @Column
-    private String nickname;
+    private String username;
+    @Column
+    private String password;
     @Column
     private String first_name;
     @Column
@@ -48,6 +51,19 @@ public class User {
     @JsonIgnore
     private List<Room> rooms;
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    @JsonIgnore
+    private List<Role> roles;
+
     public long getId() {
         return id;
     }
@@ -56,12 +72,20 @@ public class User {
         this.id = id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = DigestUtils.md5Hex(password.trim());
     }
 
     public String getFirst_name() {
@@ -144,11 +168,11 @@ public class User {
         this.roomMessages = roomMessages;
     }
 
-//    public List<Room> getRooms() {
-//        return rooms;
-//    }
-//
-//    public void setRooms(List<Room> rooms) {
-//        this.rooms = rooms;
-//    }
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 }

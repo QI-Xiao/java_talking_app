@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.model.User;
+import org.example.repository.exception.UserNotFoundException;
 import org.example.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -119,6 +120,22 @@ public class UserHibernateDaoImpl implements IUserDao{
             logger.error("Session exception", e);
             session.close();
             return null;
+        }
+    }
+
+    @Override
+    public User getUserByCredentials(String email, String password) throws UserNotFoundException {
+        String hql = "FROM User as u where (lower(u.email) = :email or lower(u.username) = :email) and u.password = :password";
+
+        try {
+            Session session = sessionFactory.openSession();
+            Query<User> query = session.createQuery(hql);
+            query.setParameter("email", email.toLowerCase().trim());
+            query.setParameter("password", password);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            logger.error("error {}", e.getMessage());
+            throw new UserNotFoundException("can't find user record with email=" + email + ", password=" + password);
         }
     }
 }

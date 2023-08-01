@@ -2,6 +2,7 @@ package org.example.service;
 
 import org.example.model.User;
 import org.example.repository.IUserDao;
+import org.example.repository.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,9 @@ public class UserService {
 
     public User update(User user) {
         return userDao.update(user);
+    }
+
+    public User getUserBYCredentials(String email, String password) throws Exception {
+        return userDao.getUserByCredentials(email, password);
     }
 }

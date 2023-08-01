@@ -15,4 +15,6 @@ public interface IUserDao {
     User update(User user);
 
     User getById(long id);
+
+    User getUserByCredentials(String email, String password) throws Exception;
 }

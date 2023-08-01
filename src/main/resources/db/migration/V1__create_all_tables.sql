@@ -10,7 +10,8 @@ ALTER TABLE rooms ADD CONSTRAINT rooms_pk PRIMARY KEY (id);
 
 CREATE TABLE users (
                        id              BIGSERIAL NOT NULL,
-                       nickname        VARCHAR(30) not null unique,
+                       username        VARCHAR(30) not null unique,
+                       password        VARCHAR(50) not null,
                        first_name      VARCHAR(30),
                        last_name       VARCHAR(30),
                        profile         VARCHAR(150),
@@ -24,9 +25,9 @@ ALTER TABLE users ADD CONSTRAINT user_pk PRIMARY KEY ( id );
 
 CREATE TABLE users_rooms (
                            id             BIGSERIAL NOT NULL,
-                           room_id       BIGINT NOT NULL,
+                           room_id        BIGINT NOT NULL,
                            user_id        BIGINT NOT NULL,
-                           nickname       VARCHAR(30) not null,
+                           room_name      VARCHAR(30),
                            role           VARCHAR(30),
                            join_date      date default CURRENT_DATE,
                            last_active    date default CURRENT_DATE

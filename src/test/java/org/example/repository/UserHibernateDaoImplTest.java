@@ -18,7 +18,7 @@ public class UserHibernateDaoImplTest {
         userHibernateDao = new UserHibernateDaoImpl();
         user = new User();
         user.setId(2);
-        user.setNickname("a");
+        user.setUsername("a");
         user.setAddress("aaa");
         user.setEmail("aaa");
         user.setFirst_name("aaa");

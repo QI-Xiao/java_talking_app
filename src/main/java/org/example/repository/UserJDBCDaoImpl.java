@@ -72,4 +72,9 @@ public class UserJDBCDaoImpl implements IUserDao {
     public User getById(long id) {
         return null;
     }
+
+    @Override
+    public User getUserByCredentials(String email, String password) throws Exception {
+        return null;
+    }
 }
