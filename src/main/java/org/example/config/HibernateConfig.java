@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class HibernateConfig {
-    @Bean
-    public SessionFactory getHibernateSessionFactory() {
-        return HibernateUtil.getSessionFactory();
-    }
+//    @Bean
+//    public SessionFactory getHibernateSessionFactory() {
+//        return HibernateUtil.getSessionFactory();
+//    }
 }
