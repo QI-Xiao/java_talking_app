@@ -47,7 +47,7 @@ public class UserHibernateDaoImpl implements IUserDao {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
         Transaction transaction = null;
         Session session = sessionFactory.openSession();
         try {
@@ -62,11 +62,13 @@ public class UserHibernateDaoImpl implements IUserDao {
             }
             logger.error("create error", e);
             session.close();
+            return null;
         }
+        return user;
     }
 
     @Override
-    public void delete(User user) {
+    public boolean delete(User user) {
         Transaction tx = null;
         try {
             Session session = sessionFactory.openSession();
@@ -81,7 +83,9 @@ public class UserHibernateDaoImpl implements IUserDao {
                 tx.rollback();
             }
             logger.error("delete er");
+            return false;
         }
+        return true;
     }
 
     @Override

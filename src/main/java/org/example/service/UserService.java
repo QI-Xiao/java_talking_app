@@ -5,8 +5,10 @@ import org.example.dao.IUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -15,8 +17,8 @@ public class UserService {
     @Autowired
     private IUserDao userDao;
 
-    public void save(User user){
-        userDao.save(user);
+    public User save(User user){
+        return userDao.save(user);
     }
 
     public User getById(long id) {
@@ -27,11 +29,9 @@ public class UserService {
         return userDao.getUsers();
     }
 
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         User user = getById(id);
-        if (user != null) {
-            userDao.delete(user);
-        }
+        return userDao.delete(user);
     }
 
     public User update(User user) {

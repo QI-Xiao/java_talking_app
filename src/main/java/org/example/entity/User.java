@@ -175,4 +175,20 @@ public class User {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", profile='" + profile + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", register_date=" + register_date +
+                ", last_active=" + last_active +
+                '}';
+    }
 }

@@ -29,13 +29,17 @@ public class UserJPADaoImpl implements IUserDao {
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public void delete(User user) {
-        userRepository.delete(user);
+    public boolean delete(User user) {
+        if (user!=null) {
+            userRepository.delete(user);
+            return true;
+        }
+        return false;
     }
 
     @Override
