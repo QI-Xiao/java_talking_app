@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Qualifier("UserJPADaoImpl")
+    @Qualifier("UserJPADaoImpl")  // UserHibernateDaoImpl    UserJPADaoImpl
     @Autowired
     private IUserDao userDao;
 
@@ -25,6 +25,13 @@ public class UserService {
 
     public List<User> getUsers() {
         return userDao.getUsers();
+    }
+
+    public void delete(Long id) {
+        User user = getById(id);
+        if (user != null) {
+            userDao.delete(user);
+        }
     }
 
     public User update(User user) {

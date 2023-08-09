@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "employees/")
+@RequestMapping(value = "user")
 public class UserController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -37,6 +37,18 @@ public class UserController {
         logger.info("create {}", user.getId());
 
         userService.save(user);
+    }
 
+    @RequestMapping(value = "/{Id}", method = RequestMethod.PATCH)
+    public void updateUser(@PathVariable("Id") Long id, @RequestBody User user) {
+        System.out.println(id);
+        System.out.println(user);
+
+//        userService.update(user);
+    }
+
+    @RequestMapping(value = "/{Id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable(name = "Id") Long id) {
+        userService.delete(id);
     }
 }

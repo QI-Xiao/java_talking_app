@@ -3,19 +3,15 @@ package org.example.service;
 import io.jsonwebtoken.Claims;
 import org.example.ApplicationBootstrap;
 import org.example.entity.User;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationBootstrap.class)
 public class JWTServiceTest {
-
     @Autowired
     private JWTService jwtService;
 

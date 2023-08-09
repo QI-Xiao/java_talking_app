@@ -2,11 +2,11 @@ package org.example.repository;
 
 import org.example.daoimpl.hibernate.UserHibernateDaoImpl;
 import org.example.entity.User;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserHibernateDaoImplTest {
 
@@ -14,7 +14,7 @@ public class UserHibernateDaoImplTest {
 
     private User user;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         userHibernateDao = new UserHibernateDaoImpl();
         user = new User();
@@ -30,7 +30,7 @@ public class UserHibernateDaoImplTest {
         userHibernateDao.save(user);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
 //        userHibernateDao.delete(user);
     }

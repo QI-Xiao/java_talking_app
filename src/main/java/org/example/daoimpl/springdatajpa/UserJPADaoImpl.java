@@ -19,8 +19,13 @@ public class UserJPADaoImpl implements IUserDao {
     private IUserRepository userRepository;
 
     @Override
+    public User getById(long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public List<User> getUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
@@ -30,18 +35,12 @@ public class UserJPADaoImpl implements IUserDao {
 
     @Override
     public void delete(User user) {
-
+        userRepository.delete(user);
     }
 
     @Override
     public User update(User user) {
-        return null;
-//        return userRepository.save(user);
-    }
-
-    @Override
-    public User getById(long id) {
-        return null;
+        return userRepository.save(user);
     }
 
     @Override
