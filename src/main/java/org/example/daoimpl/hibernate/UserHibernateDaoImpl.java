@@ -1,8 +1,8 @@
-package org.example.repository;
+package org.example.daoimpl.hibernate;
 
-import org.example.model.User;
-import org.example.repository.exception.UserNotFoundException;
-import org.example.util.HibernateUtil;
+import org.example.dao.IUserDao;
+import org.example.entity.User;
+import org.example.exception.UserNotFoundException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserHibernateDaoImpl implements IUserDao{
+public class UserHibernateDaoImpl implements IUserDao {
     private static final Logger logger = LoggerFactory.getLogger(UserHibernateDaoImpl.class);
 
     @Autowired

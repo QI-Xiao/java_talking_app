@@ -2,7 +2,7 @@ package org.example.service;
 
 import io.jsonwebtoken.Claims;
 import org.example.ApplicationBootstrap;
-import org.example.model.User;
+import org.example.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

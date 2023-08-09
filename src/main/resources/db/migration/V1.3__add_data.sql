@@ -13,10 +13,10 @@ insert into users (username, password, first_name, last_name, email) values
 commit;
 
 insert into users_roles values
-                            (3, 1),
-                            (4, 2),
-                            (5, 3),
-                            (3, 2),
-                            (3, 3)
+                            (1, 1),
+                            (2, 2),
+                            (3, 3),
+                            (1, 2),
+                            (1, 3)
 ;
 commit;

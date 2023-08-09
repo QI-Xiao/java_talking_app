@@ -1,12 +1,10 @@
 package org.example.controller;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.example.model.User;
-import org.example.repository.exception.UserNotFoundException;
+import org.example.entity.User;
+import org.example.exception.UserNotFoundException;
 import org.example.service.JWTService;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

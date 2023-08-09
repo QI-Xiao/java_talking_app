@@ -1,6 +1,7 @@
-package org.example.repository;
+package org.example.daoimpl.hibernate;
 
-import org.example.model.Room;
+import org.example.dao.IRoomDao;
+import org.example.entity.Room;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

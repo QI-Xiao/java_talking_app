@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.model.RoomMessage;
-import org.example.repository.IRoomMessageDao;
+import org.example.entity.RoomMessage;
+import org.example.dao.IRoomMessageDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

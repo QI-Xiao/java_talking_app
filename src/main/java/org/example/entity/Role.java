@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.entity;
 
 import javax.persistence.*;
 import java.util.List;

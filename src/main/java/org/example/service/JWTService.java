@@ -1,8 +1,8 @@
 package org.example.service;
 
 import io.jsonwebtoken.*;
-import org.example.model.Role;
-import org.example.model.User;
+import org.example.entity.Role;
+import org.example.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

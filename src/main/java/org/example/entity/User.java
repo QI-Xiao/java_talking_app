@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.codec.digest.DigestUtils;

@@ -1,4 +1,4 @@
-package org.example.repository.exception;
+package org.example.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException() {

@@ -1,7 +1,7 @@
 package org.example.filter;
 
 import io.jsonwebtoken.Claims;
-import org.example.model.User;
+import org.example.entity.User;
 import org.example.service.JWTService;
 import org.example.service.UserService;
 import org.slf4j.Logger;

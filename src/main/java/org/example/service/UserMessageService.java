@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.model.UserMessage;
-import org.example.repository.IUserMessageDao;
+import org.example.entity.UserMessage;
+import org.example.dao.IUserMessageDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package org.example.repository;
+package org.example.daoimpl.hibernate;
 
-import org.example.model.User;
-import org.example.model.UserRelation;
+import org.example.dao.IUserMessageDao;
+import org.example.entity.UserMessage;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,20 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRelationHibernateDaoImpl implements IUserRelationDao{
-
+public class UserMessageHibernateDaoImpl implements IUserMessageDao {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public void save(UserRelation userRelation) {
+    public void save(UserMessage userMessage) {
         Transaction transaction = null;
         Session session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
-            session.save(userRelation);
+            session.save(userMessage);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {

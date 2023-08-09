@@ -1,6 +1,6 @@
-package org.example.repository;
+package org.example.dao;
 
-import org.example.model.RoomMessage;
+import org.example.entity.RoomMessage;
 
 public interface IRoomMessageDao {
     void save(RoomMessage roomMessage);

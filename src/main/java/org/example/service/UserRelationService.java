@@ -1,8 +1,8 @@
 package org.example.service;
 
-import org.example.model.User;
-import org.example.model.UserRelation;
-import org.example.repository.IUserRelationDao;
+import org.example.entity.User;
+import org.example.entity.UserRelation;
+import org.example.dao.IUserRelationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

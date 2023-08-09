@@ -1,9 +1,9 @@
 package org.example.service;
 
-import org.example.model.User;
-import org.example.repository.IUserDao;
-import org.example.repository.exception.UserNotFoundException;
+import org.example.entity.User;
+import org.example.dao.IUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class UserService {
 
+    @Qualifier("UserJPADaoImpl")
     @Autowired
     private IUserDao userDao;
 

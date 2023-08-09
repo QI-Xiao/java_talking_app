@@ -1,6 +1,7 @@
-package org.example.repository;
+package org.example.daoimpl.hibernate;
 
-import org.example.model.User;
+import org.example.dao.IUserDao;
+import org.example.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,7 @@
 package org.example.repository;
 
-import org.example.model.User;
+import org.example.daoimpl.hibernate.UserHibernateDaoImpl;
+import org.example.entity.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
