@@ -30,7 +30,7 @@ public class SecurityFilter implements Filter {
     private UserService userService;
 
     private static final Set<String> ALLOWED_PATH = new HashSet<>(Arrays.asList("/login"));
-    private static final Set<String> IGNORED_PATH = new HashSet<>(Arrays.asList("/auth"));
+    private static final Set<String> IGNORED_PATH = new HashSet<>(Arrays.asList("/login", "/register"));
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -57,25 +57,7 @@ public class SecurityFilter implements Filter {
             return HttpServletResponse.SC_ACCEPTED;
         }
 
-
         String verb = req.getMethod();
-
-
-//        try {
-//            String token = req.getHeader("Authorization").replaceAll("^(.*?)", "");
-//            if (token == null || token.isEmpty()) {
-//                return statusCode;
-//            }
-//
-//            Claims claims = jwtService.decryptToken(token);
-//
-//            if (claims.getId() != null) {
-//                User user = userService.getById(Long.valueOf(claims.getId()));
-//                if (user != null) {
-//                    statusCode = HttpServletResponse.SC_ACCEPTED;
-//                }
-//            }
-
 
         try {
             String token = req.getHeader("Authorization").replaceAll("^(.*?) ", "");
@@ -87,17 +69,19 @@ public class SecurityFilter implements Filter {
             //TODO pass username and check role
             if (claims.getId() != null) {
                 User u = userService.getById(Long.valueOf(claims.getId()));
-                //加redis cache
+                //add redis cache
                 if (u == null) {
                     return statusCode;
                 }
             }
 
-            String allowedResources = "/";
+            String allowedResources = "";
             switch (verb) {
                 case "GET": allowedResources = (String) claims.get("allowedResources"); break;
                 case "POST": allowedResources = (String) claims.get("allowedCreateResources"); break;
-                case "PUT": allowedResources = (String) claims.get("allowedUpdateResources"); break;
+                case "PUT":
+                case "PATCH":
+                    allowedResources = (String) claims.get("allowedUpdateResources"); break;
                 case "DELETE": allowedResources = (String) claims.get("allowedDeleteResources"); break;
             }
 
@@ -107,8 +91,12 @@ public class SecurityFilter implements Filter {
 
 
             for(String s : allowedResources.split(",")) {
-                logger.info("aaaa{}aaa bbb{}bbb ccc{}ccc", url.trim(), url.trim().toLowerCase().startsWith(s.trim().toLowerCase()), s);
-                if(url.trim().toLowerCase().startsWith(s.trim().toLowerCase())) {
+                String url_trim = url.trim().toLowerCase();
+                String s_trim = s.trim().toLowerCase();
+
+                logger.info("url - {}; s - {}; {} - {}", url_trim, "\"" + s_trim + "\"", url_trim.startsWith(s_trim), !s_trim.equals(""));
+
+                if(!s_trim.equals("") && url_trim.startsWith(s_trim)) {
                     statusCode = HttpServletResponse.SC_ACCEPTED;
                     break;
                 }
