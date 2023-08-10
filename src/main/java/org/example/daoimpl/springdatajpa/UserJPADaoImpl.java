@@ -3,6 +3,7 @@ package org.example.daoimpl.springdatajpa;
 import org.example.dao.IUserDao;
 import org.example.daoimpl.repository.IUserRepository;
 import org.example.entity.User;
+import org.example.exception.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,16 @@ public class UserJPADaoImpl implements IUserDao {
     }
 
     @Override
-    public User getUserByCredentials(String email, String password) throws Exception {
-        return null;
+    public User getUserByCredentials(String email, String username, String password) throws Exception {
+
+        User user = userRepository.findByEmailAndPassword(email, password);
+        if (user!=null)
+            return user;
+
+        user = userRepository.findByUsernameAndPassword(username, password);
+        if (user!=null)
+            return user;
+
+        throw new UserNotFoundException("can't find user record with email or username");
     }
 }

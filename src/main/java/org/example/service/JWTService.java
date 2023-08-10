@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class JWTService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final String SECRET_KEY = "safds";  // put it into vm option
+    private final String SECRET_KEY = System.getProperty("jwt.secretKey");
 
     private final String ISSUER = "org.example";
 

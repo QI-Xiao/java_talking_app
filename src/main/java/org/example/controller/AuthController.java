@@ -22,10 +22,10 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity userLogin(@RequestBody User user) throws Exception {
         try {
-            User u = userService.getUserBYCredentials(user.getEmail(), user.getPassword());
+            User u = userService.getUserBYCredentials(user.getEmail(), user.getUsername(), user.getPassword());
             if (u == null) {
                 return ResponseEntity.status(HttpServletResponse.SC_UNAUTHORIZED).build();
             }

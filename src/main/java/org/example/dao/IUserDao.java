@@ -16,5 +16,5 @@ public interface IUserDao {
 
     User getById(long id);
 
-    User getUserByCredentials(String email, String password) throws Exception;
+    User getUserByCredentials(String email, String username, String password) throws Exception;
 }

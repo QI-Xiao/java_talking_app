@@ -6,5 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, Long> {
+    User findByEmail(String email);
 
+    User findByEmailAndPassword(String email, String password) throws Exception;
+
+    User findByUsernameAndPassword(String username, String password) throws Exception;
 }

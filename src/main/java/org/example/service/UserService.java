@@ -38,7 +38,7 @@ public class UserService {
         return userDao.update(user);
     }
 
-    public User getUserBYCredentials(String email, String password) throws Exception {
-        return userDao.getUserByCredentials(email, password);
+    public User getUserBYCredentials(String email, String username, String password) throws Exception {
+        return userDao.getUserByCredentials(email, username, password);
     }
 }

@@ -128,7 +128,7 @@ public class UserHibernateDaoImpl implements IUserDao {
     }
 
     @Override
-    public User getUserByCredentials(String email, String password) throws UserNotFoundException {
+    public User getUserByCredentials(String email, String username, String password) throws UserNotFoundException {
         String hql = "FROM User as u where (lower(u.email) = :email or lower(u.username) = :email) and u.password = :password";
 
         try {

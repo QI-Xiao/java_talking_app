@@ -75,7 +75,7 @@ public class UserJDBCDaoImpl implements IUserDao {
     }
 
     @Override
-    public User getUserByCredentials(String email, String password) throws Exception {
+    public User getUserByCredentials(String email, String username, String password) throws Exception {
         return null;
     }
 }
