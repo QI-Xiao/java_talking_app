@@ -41,14 +41,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PostMapping(value = "")
-    public ResponseEntity<Object> create(@RequestBody User user) {
-        logger.info("create {}", user.getId());
-
-        User user1 = userService.save(user);
-        return new ResponseEntity<>(user1, HttpStatus.OK);
-    }
-
     @PatchMapping(value = "/{Id}")
     public ResponseEntity<Object> updateUser(@PathVariable("Id") Long id, @RequestBody Map<String, Object> payload) {
         // @RequestBody Map<String, Object> payload

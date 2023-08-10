@@ -8,7 +8,7 @@ public interface IUserDao {
 
     List<User> getUsers();
 
-    User save(User user);
+    User save(User user) throws Exception;
 
     boolean delete(User user);
 

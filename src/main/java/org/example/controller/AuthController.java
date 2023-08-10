@@ -5,6 +5,7 @@ import org.example.exception.UserNotFoundException;
 import org.example.service.JWTService;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,17 +40,17 @@ public class AuthController {
         return ResponseEntity.badRequest().build();
     }
 
+    @PostMapping(value = "/register")
+    public ResponseEntity userRegister(@RequestBody User user) throws Exception {
+        try {
+            User user1 = userService.save(user);
+            if (user1!=null) {
+                return new ResponseEntity<>(user1, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e);
+        }
+        return ResponseEntity.badRequest().build();
+    }
 
-//    old method
-//    @RequestMapping(value = "", method = RequestMethod.POST)
-//    public String userLogin(@RequestParam("email") String email, @RequestParam("password") String password) throws Exception {
-//        try {
-//            String digestPassword = DigestUtils.md5Hex(password.trim());
-//            User user = userService.getUserBYCredentials(email, digestPassword);
-//            return jwtService.generateToken(user);
-//        } catch (UserNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 }

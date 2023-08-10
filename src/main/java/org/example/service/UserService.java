@@ -17,7 +17,7 @@ public class UserService {
     @Autowired
     private IUserDao userDao;
 
-    public User save(User user){
+    public User save(User user) throws Exception {
         return userDao.save(user);
     }
 

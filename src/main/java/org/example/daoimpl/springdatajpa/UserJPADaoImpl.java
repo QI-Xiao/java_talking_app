@@ -30,8 +30,21 @@ public class UserJPADaoImpl implements IUserDao {
     }
 
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
+    public User save(User user) throws Exception {
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            throw new Exception("Email already exists");
+        }
+        if (userRepository.findByUsername(user.getUsername()) != null)
+            throw new Exception("Username already exists");
+
+        User new_user;
+        try {
+            new_user = userRepository.save(user);
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return new_user;
     }
 
     @Override
