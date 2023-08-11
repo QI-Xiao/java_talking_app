@@ -3,22 +3,28 @@ package org.example.service;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
 
 @Service
 public class FileService {
-    private String clientRegion = "us-east-1";
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     String bucketName = "talkingapp";
-    String stringObjKeyName = "sample.txt";
 
-    public void uploadFile() {
+    @Autowired
+    AmazonS3 s3Client;
+
+    public void uploadFile(File file) {
+        if (file==null) {
+            logger.error("no file");
+            return;
+        }
         try {
-            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                    .withRegion(clientRegion)
-                    .build();
-            s3Client.putObject(bucketName, stringObjKeyName, "tttttt");
+            s3Client.putObject(bucketName, file.getName(), file);
         }catch (AmazonServiceException e) {
             e.printStackTrace();
         } catch (SdkClientException e) {

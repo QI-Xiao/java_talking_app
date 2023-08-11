@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.File;
+
 @SpringBootTest(classes = ApplicationBootstrap.class)
 public class FileServiceTest {
 
@@ -12,6 +14,7 @@ public class FileServiceTest {
     private FileService fileService;
     @Test
     public void uploadFileTest() {
-        fileService.uploadFile();
+        File file = new File("/Users/xiaoqi/Desktop/Screenshot2023-08-05.png");
+        fileService.uploadFile(file);
     }
 }
