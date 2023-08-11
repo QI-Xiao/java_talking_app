@@ -15,7 +15,7 @@ CREATE TABLE users (
                        first_name      VARCHAR(30),
                        last_name       VARCHAR(30),
                        profile         VARCHAR(150),
-                       email           VARCHAR(50),
+                       email           VARCHAR(50) not null unique,
                        address         VARCHAR(150),
                        register_date   date default CURRENT_DATE,
                        last_active     date default CURRENT_DATE

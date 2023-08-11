@@ -2,6 +2,7 @@ CREATE TABLE user_relations (
     id          BIGSERIAL NOT NULL,
     user1_id    BIGINT NOT NULL,
     user2_id    BIGINT NOT NULL,
+    type        INT DEFAULT 0 NOT NULL,
     register_date   date default CURRENT_DATE
 );
 
@@ -16,35 +17,26 @@ ALTER TABLE user_relations
         REFERENCES users ( id );
 
 
-CREATE TABLE user_messages (
+CREATE TABLE messages (
     id          BIGSERIAL NOT NULL,
+    user_id         BIGINT NOT NULL,
+    receiver_id     BIGINT,
+    room_id         BIGINT,
+    is_room_chat    BOOLEAN not null default FALSE,
     message     VARCHAR(150),
-    time        date default CURRENT_DATE,
-    user_relation_id        BIGINT NOT NULL,
-    is_use1_send      Boolean DEFAULT TRUE
+    time        date default CURRENT_DATE
 );
 
-ALTER TABLE user_messages ADD CONSTRAINT user_messages_pk PRIMARY KEY ( id );
+ALTER TABLE messages ADD CONSTRAINT messages_pk PRIMARY KEY ( id );
 
-ALTER TABLE user_messages
-    ADD CONSTRAINT user_relation_fk FOREIGN KEY ( user_relation_id )
-        REFERENCES user_relations ( id );
-
-
-CREATE TABLE room_messages (
-    id          BIGSERIAL NOT NULL,
-    room_id    BIGINT NOT NULL,
-    time        date default CURRENT_DATE,
-    user_id     BIGINT NOT NULL,
-    message     VARCHAR(150)
-);
-
-ALTER TABLE room_messages ADD CONSTRAINT room_messages_pk PRIMARY KEY ( id );
-
-ALTER TABLE room_messages
-    ADD CONSTRAINT room_fk FOREIGN KEY ( room_id )
-        REFERENCES rooms ( id );
-
-ALTER TABLE room_messages
+ALTER TABLE messages
     ADD CONSTRAINT user_fk FOREIGN KEY ( user_id )
         REFERENCES users ( id );
+
+ALTER TABLE messages
+    ADD CONSTRAINT receiver_fk FOREIGN KEY ( receiver_id )
+        REFERENCES users ( id );
+
+ALTER TABLE messages
+    ADD CONSTRAINT room_fk FOREIGN KEY ( room_id )
+        REFERENCES rooms ( id );

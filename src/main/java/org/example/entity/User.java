@@ -42,9 +42,13 @@ public class User {
     @JsonIgnore
     private Set<UserRelation> user2Relations;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "userSender", cascade = CascadeType.REMOVE)
     @JsonIgnore
-    private Set<RoomMessage> roomMessages;
+    private Set<Message> messagesSent;
+
+    @OneToMany(mappedBy = "userReceiver", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private Set<Message> messagesReceived;
 
     @ManyToMany
     @JoinTable(name = "users_rooms", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "room_id")})
@@ -158,14 +162,6 @@ public class User {
 
     public void setUser2Relations(Set<UserRelation> user2Relations) {
         this.user2Relations = user2Relations;
-    }
-
-    public Set<RoomMessage> getRoomMessages() {
-        return roomMessages;
-    }
-
-    public void setRoomMessages(Set<RoomMessage> roomMessages) {
-        this.roomMessages = roomMessages;
     }
 
     public List<Room> getRooms() {

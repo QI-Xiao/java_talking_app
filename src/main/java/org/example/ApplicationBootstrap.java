@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication(scanBasePackages = {"org.example"})
-@ServletComponentScan(basePackages = {"org.example.filter"})
+//@ServletComponentScan(basePackages = {"org.example.filter"})
 public class ApplicationBootstrap {
 
     private static final Logger logger = LoggerFactory.getLogger(ApplicationBootstrap.class.getName());

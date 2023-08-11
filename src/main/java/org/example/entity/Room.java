@@ -25,7 +25,7 @@ public class Room {
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     @JsonIgnore
-    private Set<RoomMessage> roomMessages;
+    private Set<Message> messages;
 
     @ManyToMany(mappedBy = "rooms")
     private List<User> users;

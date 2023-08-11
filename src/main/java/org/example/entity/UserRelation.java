@@ -22,9 +22,8 @@ public class UserRelation {
     @JoinColumn(name = "user2_id")
     private User user2;
 
-    @OneToMany(mappedBy = "userRelation", cascade = CascadeType.DETACH)
-    @JsonIgnore
-    private Set<UserMessage> userMessages;
+    @Column
+    private Integer type;
 
     public UserRelation(User user1, User user2) {
         this.user1 = user1;
@@ -53,13 +52,5 @@ public class UserRelation {
 
     public void setUser2(User user2) {
         this.user2 = user2;
-    }
-
-    public Set<UserMessage> getUserMessages() {
-        return userMessages;
-    }
-
-    public void setUserMessages(Set<UserMessage> userMessages) {
-        this.userMessages = userMessages;
     }
 }
