@@ -25,6 +25,11 @@ public class UserJPADaoImpl implements IUserDao {
     }
 
     @Override
+    public User getByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
     public List<User> getUsers() {
         return userRepository.findAll();
     }

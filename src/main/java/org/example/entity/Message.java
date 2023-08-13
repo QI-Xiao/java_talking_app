@@ -1,9 +1,20 @@
 package org.example.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.example.daoimpl.springdatajpa.UserJPADaoImpl;
+import org.example.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "messages")
+@Getter
+@Setter
+@ToString
 public class Message {
 
     @Id
@@ -12,6 +23,12 @@ public class Message {
 
     @Column
     private Boolean isRoomChat;
+
+    public enum MessageType {
+        CHAT, LEAVE, JOIN
+    }
+
+    private MessageType type;
 
     @Column
     private String message;
@@ -28,63 +45,18 @@ public class Message {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Boolean getRoomChat() {
-        return isRoomChat;
-    }
-
-    public void setRoomChat(Boolean roomChat) {
-        isRoomChat = roomChat;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public User getUserSender() {
-        return userSender;
-    }
-
-    public void setUserSender(User userSender) {
+    public Message(MessageType type, User userSender) {
+        this.type = type;
         this.userSender = userSender;
     }
 
-    public User getUserReceiver() {
-        return userReceiver;
-    }
+//    public User setUserSender(String username) {
+//        .
+//    }
 
-    public void setUserReceiver(User userReceiver) {
-        this.userReceiver = userReceiver;
-    }
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", isRoomChat=" + isRoomChat +
-                ", message='" + message + '\'' +
-                ", userSender=" + userSender +
-                ", userReceiver=" + userReceiver +
-                ", room=" + room +
-                '}';
+    public String getUserSender() {
+        if (userSender!=null)
+            return userSender.getUsername();
+        return null;
     }
 }

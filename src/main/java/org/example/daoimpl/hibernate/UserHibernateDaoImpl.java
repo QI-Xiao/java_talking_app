@@ -142,4 +142,9 @@ public class UserHibernateDaoImpl implements IUserDao {
             throw new UserNotFoundException("can't find user record with email=" + email + ", password=" + password);
         }
     }
+
+    @Override
+    public User getByUsername(String username) {
+        return null;
+    }
 }
