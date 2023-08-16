@@ -13,6 +13,7 @@
 //
 //import java.io.File;
 //import java.io.IOException;
+//import java.util.UUID;
 //
 //import static org.mockito.ArgumentMatchers.any;
 //import static org.mockito.Mockito.*;
@@ -27,20 +28,27 @@
 //    private AmazonS3 s3Client;
 //
 //    @Mock
-//    private File file;
+//    private MultipartFile file;
+//
+//    @Mock
+//    private UUID mockUuid;
 //
 //    @Test
 //    public void uploadFileTest_happyPath() throws IOException {
-//        MultipartFile file = any(MultipartFile.class);
-//        String bucketName = any(String.class);
-//        when(file.getOriginalFilename()).thenReturn(any(String.class));
-//        when(file.getContentType()).thenReturn(any(String.class));
-//        when(file.getSize()).thenReturn(any(Long.class));
-//        when(FilenameUtil.removeExtension(any(String.class))).thenReturn(any(String.class));
+//        String uuid = UUID.randomUUID().toString();
+//        String originalFileName = file.getOriginalFilename();
 //
 //
-//        fileService.uploadFile(bucketName, file);
-//        verify(s3Client, times(1)).putObject(any(PutObjectRequest.class));
+////        MultipartFile file = any(MultipartFile.class);
+////        String bucketName = any(String.class);
+////        when(file.getOriginalFilename()).thenReturn(any(String.class));
+////        when(file.getContentType()).thenReturn(any(String.class));
+////        when(file.getSize()).thenReturn(any(Long.class));
+////        when(FilenameUtil.removeExtension(any(String.class))).thenReturn(any(String.class));
+////
+////
+////        fileService.uploadFile(bucketName, file);
+////        verify(s3Client, times(1)).putObject(any(PutObjectRequest.class));
 //    }
 //
 //    @Test
