@@ -28,7 +28,7 @@ public class SQSMessageServiceTest {
     public void sendMessageTest(){
         when(sqs.getQueueUrl(anyString())).thenReturn(getQueueUrlResult);
 
-        sqsMessageService.sendMessage(anyString(), "anyString()", 5);
+        sqsMessageService.sendMessage("name", "message", 5);
 
         verify(sqs, times(1)).sendMessage(any(SendMessageRequest.class));
     }
