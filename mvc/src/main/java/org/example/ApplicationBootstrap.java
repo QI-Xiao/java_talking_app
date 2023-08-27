@@ -5,10 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication(scanBasePackages = {"org.example"})
 //@ServletComponentScan(basePackages = {"org.example.filter"})
-public class ApplicationBootstrap {
+public class ApplicationBootstrap extends SpringBootServletInitializer {
 
     private static final Logger logger = LoggerFactory.getLogger(ApplicationBootstrap.class.getName());
 

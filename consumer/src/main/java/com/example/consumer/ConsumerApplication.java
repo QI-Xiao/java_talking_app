@@ -3,10 +3,11 @@ package com.example.consumer;
 import com.example.consumer.service.SQSMessageService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication(scanBasePackages = {"com.example.consumer"})
-public class ConsumerApplication {
+public class ConsumerApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
 
