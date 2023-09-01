@@ -4,6 +4,8 @@ target/
 !**/src/test/**/target/
 *other_gitignore/
 
+*.war
+
 ### IntelliJ IDEA ###
 .idea/
 .idea/modules.xml
