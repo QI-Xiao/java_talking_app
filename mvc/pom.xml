@@ -130,9 +130,9 @@
         <version>6.0.4</version>
         <configuration>
           <driver>org.postgresql.Driver</driver>
-          <url>jdbc:postgresql://localhost:5430/talking_db</url>
-          <user>admin</user>
-          <password>Training123!</password>
+          <url>${SPRING_DATASOURCE_URL}</url>
+          <user>${SPRING_DATASOURCE_USERNAME}</user>
+          <password>${SPRING_DATASOURCE_PASSWORD}</password>
           <locations>
             <location>db/migration</location>
           </locations>
